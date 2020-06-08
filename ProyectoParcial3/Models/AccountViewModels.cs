@@ -24,7 +24,7 @@ namespace ProyectoParcial3.Models
         [Display(Name = "Identificacion")]
         public string Identificacion { get; set; }
 
-    }
+    } 
 
     public class ExternalLoginListViewModel
     {
