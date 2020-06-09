@@ -179,6 +179,7 @@
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\OpcionController.cs" />
     <Compile Include="Controllers\PreguntaController.cs" />
+    <Compile Include="Controllers\PreguntaExamenController.cs" />
     <Compile Include="Controllers\ProgramaController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -295,6 +296,11 @@
     <Content Include="Views\Administrador\Delete.cshtml" />
     <Content Include="Views\Administrador\Create.cshtml" />
     <Content Include="Views\Administrador\ListaEstudiantes.cshtml" />
+    <Content Include="Views\PreguntaExamen\Create.cshtml" />
+    <Content Include="Views\PreguntaExamen\Delete.cshtml" />
+    <Content Include="Views\PreguntaExamen\Details.cshtml" />
+    <Content Include="Views\PreguntaExamen\Edit.cshtml" />
+    <Content Include="Views\PreguntaExamen\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
