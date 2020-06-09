@@ -3,8 +3,8 @@
 @{
     ViewBag.Title = "Index";
 }
-
-<h2>Lista de administradores</h2>
+<font face="Century Gothic"></font>
+<h2><font face="Century Gothic">Lista de administradores</font></h2>
 
 <table class="table">
     <tr>
@@ -27,7 +27,7 @@
             @Html.DisplayNameFor(model => model.Usuario.Roles)
         </th>
     </tr>
-
+    
     @foreach (var item in Model.ListaUsuariosP)
     {
         <tr>
@@ -51,8 +51,6 @@
               @Html.DisplayFor(model => model.RolesByUsuario[item.Id])
             </td>
 
-
- 
             <td>
                 <a href='@Url.Action("Edit","Administrador")'></a>
                 <button type="button" class="btn btn-default btn-sm" data-toggle="modal" data-target="#Algo">
