@@ -1,0 +1,54 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - Saber pro</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+
+</head>
+<body>
+    <div class="sidebar">
+        <h2>Menú</h2>
+        <ul>
+            <li><a href="@Url.Action("Index","Home")"><span class="glyphicon glyphicon-home letrasidebar"><font face="Century Gothic"> Inicio</font></span></a></li>
+            <li><a href="@Url.Action("About","Home")"><span class="glyphicon glyphicon-tasks letrasidebar"><font face="Century Gothic"> Servicios</font></span></a></li>
+            <li><a href="@Url.Action("Contact","Home")"><span class="glyphicon glyphicon-envelope letrasidebar"><font face="Century Gothic"> Contacto</font></span></a></li>
+        </ul>
+    </div>
+    <div class="contenido">
+        <font size="5"><span class="glyphicon glyphicon-list menu-bar" alt=""></span></font>
+    </div>
+
+    <div class="navbar navbar-inverse navbar-fixed-top"><font face="Century Gothic">
+        <div class=" <li><a href="@Url.Action("Contact","Home")"><span class="glyphicon glyphicon-tasks letrasidebar"><font face="Century Gothic"> Servicios</font></span></a></li>container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                @Html.ActionLink("Pruebas Saber Pro", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+            </div>
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                </ul>
+                @Html.Partial("_LoginPartial")
+            </div>
+        </div>
+    </font></div>
+    <div class="container body-content">
+        @RenderBody()
+        <hr />
+        <footer>
+        </footer>
+    </div>
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+    <script src="~/Scripts/abrir.js"></script>
+</body>
+</html>

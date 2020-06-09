@@ -1022,3 +1022,4 @@ C:\Users\USUARIO\Desktop\Suicidio\ThisProyectoParcial\ProyectoParcial3\obj\Debug
 C:\Users\USUARIO\Desktop\Suicidio\ThisProyectoParcial\ProyectoParcial3\obj\Debug\ProyectoParcial3.csproj.CopyComplete
 C:\Users\USUARIO\Desktop\Suicidio\ThisProyectoParcial\ProyectoParcial3\obj\Debug\ProyectoParcial3.dll
 C:\Users\USUARIO\Desktop\Suicidio\ThisProyectoParcial\ProyectoParcial3\obj\Debug\ProyectoParcial3.pdb
+D:\Desktop\Proyectoparepositorio\ProyectoParcial3\ProyectoParcial3\obj\Debug\ProyectoParcial3.csprojAssemblyReference.cache

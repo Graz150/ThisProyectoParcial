@@ -1,0 +1,131 @@
+﻿@model ProyectoParcial3.Models.ViewModels.UserViewModel
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<table class="table">
+    <tr>
+        <th>
+            <a class="btn btn-index" href="@Url.Action("Index","Administrador")"><span class="glyphicon glyphicon-home"><font face="Century Gothic"> Inicio  </font></span></a>
+        </th>
+        <th>
+            <a class="btn btn-index" href="@Url.Action("Index","Afirmacion")"><span class="glyphicon glyphicon-home"><font face="Century Gothic"> Afirmacion  </font></span></a>
+        </th>
+        <th>
+            <a class="btn btn-index" href="@Url.Action("Index","Competencia")"><span class="glyphicon glyphicon-home"><font face="Century Gothic"> Competencia  </font></span></a>
+        </th>
+        <th>
+            <a class="btn btn-index" href="@Url.Action("Index","Examen")"><span class="glyphicon glyphicon-home"><font face="Century Gothic"> Examen  </font></span></a>
+        </th>
+        <th>
+            <a class="btn btn-index" href="@Url.Action("Index","Opcion")"><span class="glyphicon glyphicon-home"><font face="Century Gothic"> Opcion  </font></span></a>
+        </th>
+        <th>
+            <a class="btn btn-index" href="@Url.Action("Index","Pregunta")"><span class="glyphicon glyphicon-home"><font face="Century Gothic"> Pregunta  </font></span></a>
+        </th>
+        <th>
+            <a class="btn btn-index" href="@Url.Action("Index","Programa")"><span class="glyphicon glyphicon-home"><font face="Century Gothic"> Programa  </font></span></a>
+        </th>
+    </tr>
+</table>
+
+<font face="Century Gothic"></font>
+<h2><font face="Century Gothic">Lista de administradores</font></h2>
+
+<table style="font-family:'Century Gothic'" class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Usuario.Nombres)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Usuario.Apellidos)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Usuario.Email)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Usuario.UserName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Usuario.Identificacion)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Usuario.Roles)
+        </th>
+    </tr>
+
+    @foreach (var item in Model.ListaUsuariosP)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Nombres)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Apellidos)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Email)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.UserName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Identificacion)
+            </td>
+
+            <td>
+                @Html.DisplayFor(model => model.RolesByUsuario[item.Id])
+            </td>
+
+            <td>
+                <a href='@Url.Action("Edit","Administrador")'></a>
+                <button type="button" class="btn btn-warning btn-sm" data-toggle="modal" data-target="#Algo">
+                    <span class="glyphicon glyphicon-pencil"></span>
+                </button>
+                <a href='@Url.Action("Delete" , "Administrador")'></a>
+                <a class="btn btn-danger btn-sm" data-toggle="modal" data-target="#ModalDelete" onclick="setusuarioEmail('@item.Email')">
+                    <span class="glyphicon glyphicon-trash"></span>
+                </a>
+            </td>
+        </tr>
+    }
+</table>
+
+<div class="modal fade" id="ModalDelete" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle">Eliminar</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            @using (Html.BeginForm("Delete", "Administrador", FormMethod.Post))
+            {
+                @Html.AntiForgeryToken()
+                @Html.HiddenFor(model => model.Correo, Model.Correo)
+                <div class="modal-body">
+                    ¿Está seguro que desea eliminar?
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                    <button type="submit" class="btn btn-primary" value="Delete">Guardar cambios</button>
+                </div>
+
+            }
+
+        </div>
+    </div>
+</div>
+
+
+
+<script type="text/javascript">
+
+    function setusuarioEmail(Email) {
+        $('#Correo').val(Email);
+    }
+</script>
+
+
