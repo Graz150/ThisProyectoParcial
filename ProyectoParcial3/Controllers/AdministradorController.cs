@@ -127,7 +127,7 @@ namespace ProyectoParcial3.Controllers
 
 
 
-        /* Esta seria el index de la lista de alumnos
+        /* Esta seria el index de la lista de los alumnos
         public ActionResult IndexAlumnos(string sortOrder, string currentFilter, string searchString, int? page)
         {
 
