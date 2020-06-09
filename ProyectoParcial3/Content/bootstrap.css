@@ -16,7 +16,7 @@ body {
 /*Esta es la sidebar del Layout*/
 .sidebar {
     position: absolute;
-    width: 250px;
+    width: 200px;
     height:100%;
     background: #333;
     color: #fff;
@@ -298,6 +298,7 @@ th {
   p,
   h2,
   h3 {
+    font-family:'Century Gothic';
     orphans: 3;
     widows: 3;
   }
@@ -316,6 +317,7 @@ th {
     border: 1px solid #000;
   }
   .table {
+    font-family:'Century Gothic';
     border-collapse: collapse !important;
   }
   .table td,
@@ -1247,7 +1249,7 @@ h6,
 .h4,
 .h5,
 .h6 {
-  font-family: inherit;
+  font-family: 'Century Gothic';
   font-weight: 500;
   line-height: 1.1;
   color: inherit;
@@ -3274,6 +3276,18 @@ fieldset[disabled] .btn-default.focus {
   color: #fff;
   background-color: #333;
 }
+.btn-index {
+  color:black;
+  background-color:transparent;
+  border-color:black;
+}
+.btn-index:hover,
+.btn-index:focus{
+    color: black;
+    background-color: transparent;
+    border-color: black;
+}
+
 .btn-primary {
   color: black;
   background-color: grey;
@@ -4729,32 +4743,32 @@ fieldset[disabled] .navbar-default .btn-link:focus {
   color: #ccc;
 }
 .navbar-inverse {
-  background-color:darkslategray;
-  border-color: :black;
+    background-color: #CDCDCD;
+    border-color: black;
 }
 .navbar-inverse .navbar-brand {
-  color: white;
+  color: black;
 }
 .navbar-inverse .navbar-brand:hover,
 .navbar-inverse .navbar-brand:focus {
-  color: #fff;
+  color: black;
   background-color: transparent;
 }
 .navbar-inverse .navbar-text {
-  color: white;
+  color: black;
 }
 .navbar-inverse .navbar-nav > li > a {
-  color: #9d9d9d;
+  color: black;
 }
 .navbar-inverse .navbar-nav > li > a:hover,
 .navbar-inverse .navbar-nav > li > a:focus {
-  color: #fff;
+  color: black;
   background-color: transparent;
 }
 .navbar-inverse .navbar-nav > .active > a,
 .navbar-inverse .navbar-nav > .active > a:hover,
 .navbar-inverse .navbar-nav > .active > a:focus {
-  color: #fff;
+  color: black;
   background-color: #080808;
 }
 .navbar-inverse .navbar-nav > .disabled > a,

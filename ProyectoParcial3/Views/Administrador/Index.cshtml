@@ -3,10 +3,37 @@
 @{
     ViewBag.Title = "Index";
 }
+
+<table class="table">
+    <tr>
+        <th>
+            <a class="btn btn-index" href="@Url.Action("Index","Administrador")"><span class="glyphicon glyphicon-home"><font face="Century Gothic"> Inicio  </font></span></a>
+        </th>
+        <th>
+            <a class="btn btn-index" href="@Url.Action("Index","Afirmacion")"><span class="glyphicon glyphicon-home"><font face="Century Gothic"> Afirmacion  </font></span></a>
+        </th>
+        <th>
+            <a class="btn btn-index" href="@Url.Action("Index","Competencia")"><span class="glyphicon glyphicon-home"><font face="Century Gothic"> Competencia  </font></span></a>
+        </th>
+        <th>
+            <a class="btn btn-index" href="@Url.Action("Index","Examen")"><span class="glyphicon glyphicon-home"><font face="Century Gothic"> Examen  </font></span></a>
+        </th>
+        <th>
+            <a class="btn btn-index" href="@Url.Action("Index","Opcion")"><span class="glyphicon glyphicon-home"><font face="Century Gothic"> Opcion  </font></span></a>
+        </th>
+        <th>
+            <a class="btn btn-index" href="@Url.Action("Index","Pregunta")"><span class="glyphicon glyphicon-home"><font face="Century Gothic"> Pregunta  </font></span></a>
+        </th>
+        <th>
+            <a class="btn btn-index" href="@Url.Action("Index","Programa")"><span class="glyphicon glyphicon-home"><font face="Century Gothic"> Programa  </font></span></a>
+        </th>
+    </tr>
+</table>
+
 <font face="Century Gothic"></font>
 <h2><font face="Century Gothic">Lista de administradores</font></h2>
 
-<table class="table">
+<table style="font-family:'Century Gothic'" class="table">
     <tr>
         <th>
             @Html.DisplayNameFor(model => model.Usuario.Nombres)
@@ -27,7 +54,7 @@
             @Html.DisplayNameFor(model => model.Usuario.Roles)
         </th>
     </tr>
-    
+
     @foreach (var item in Model.ListaUsuariosP)
     {
         <tr>
@@ -48,16 +75,16 @@
             </td>
 
             <td>
-              @Html.DisplayFor(model => model.RolesByUsuario[item.Id])
+                @Html.DisplayFor(model => model.RolesByUsuario[item.Id])
             </td>
 
             <td>
                 <a href='@Url.Action("Edit","Administrador")'></a>
-                <button type="button" class="btn btn-default btn-sm" data-toggle="modal" data-target="#Algo">
+                <button type="button" class="btn btn-warning btn-sm" data-toggle="modal" data-target="#Algo">
                     <span class="glyphicon glyphicon-pencil"></span>
                 </button>
                 <a href='@Url.Action("Delete" , "Administrador")'></a>
-                <a class="btn btn-default btn-sm" data-toggle="modal" data-target="#ModalDelete" onclick="setusuarioEmail('@item.Email')">
+                <a class="btn btn-danger btn-sm" data-toggle="modal" data-target="#ModalDelete" onclick="setusuarioEmail('@item.Email')">
                     <span class="glyphicon glyphicon-trash"></span>
                 </a>
             </td>
@@ -85,7 +112,7 @@
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
                     <button type="submit" class="btn btn-primary" value="Delete">Guardar cambios</button>
                 </div>
-                
+
             }
 
         </div>
@@ -94,10 +121,9 @@
 
 
 
-<script type="text/javascript" >
+<script type="text/javascript">
 
-    function setusuarioEmail (Email)
-    {
+    function setusuarioEmail(Email) {
         $('#Correo').val(Email);
     }
 </script>
