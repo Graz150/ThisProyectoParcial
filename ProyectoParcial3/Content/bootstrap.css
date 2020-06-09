@@ -5,13 +5,77 @@
  */
 /*! normalize.css v3.0.3 | MIT License | github.com/necolas/normalize.css */
 html {
-  font-family: sans-serif;
+  font-family:'Century Gothic';
   -ms-text-size-adjust: 100%;
   -webkit-text-size-adjust: 100%;
 }
 body {
+  font-family: 'Century Gothic';
   margin: 0;
 }
+/*Esta es la sidebar del Layout*/
+.sidebar {
+    position: absolute;
+    width: 250px;
+    height:100%;
+    background: #333;
+    color: #fff;
+    outline: 1px solid #2a2a2a;
+}
+.sidebar:focus{
+    color: #14E6FF;
+}
+.sidebar h2{
+    text-align:center;
+    margin: 0;
+    padding: 10px;
+    background: #2a2a2a;
+}
+.sidebar ul{
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+.sidebar li{
+    outline: 1px solid #2a2a2a;
+    transition: all 0.3s;
+}
+.sidebar li:hover{
+    background: #444;
+    border-left: 5px solid #eee;
+}
+.sidebar a{
+    display: block;
+    color: #fff;
+    text-decoration:none;
+    padding:10px;
+}
+.contenido {
+    width: 1px;
+    height: 1px;
+    position: absolute;
+    background-color:transparent;
+    padding: 5px;
+    transition: all 0.3s;
+    box-sizing: border-box;
+    color: #14E6FF;
+}
+.menu-bar {
+    cursor:pointer;
+}
+.abrir {
+    transform: translateX(-250px);
+}
+.abrircontenido {
+    transform: translateX(-250px);
+}
+.letrasidebar{
+    color: #fff;
+}
+.letrasidebar:hover {
+    color: #00E4FF;
+}
+/*Esta es la sidebar del Layout*/
 article,
 aside,
 details,

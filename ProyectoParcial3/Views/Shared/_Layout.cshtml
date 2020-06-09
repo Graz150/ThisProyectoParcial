@@ -10,6 +10,18 @@
 
 </head>
 <body>
+    <div class="sidebar">
+        <h2>Menú</h2>
+        <ul>
+            <li><a href="@Url.Action("Index","Home")"><span class="glyphicon glyphicon-home letrasidebar"><font face="Century Gothic"> Inicio</font></span></a></li>
+            <li><a href="@Url.Action("Index","Home")"><span class="glyphicon glyphicon-tasks letrasidebar"><font face="Century Gothic"> Servicios</font></span></a></li>
+            <li><a href="@Url.Action("Index","Home")"><span class="glyphicon glyphicon-envelope letrasidebar"><font face="Century Gothic"> Contacto</font></span></a></li>
+        </ul>
+    </div>
+    <div class="contenido">
+        <font size="5"><span class="glyphicon glyphicon-list menu-bar" alt=""></span></font>
+    </div>
+
     <div class="navbar navbar-inverse navbar-fixed-top">
         <div class="container">
             <div class="navbar-header">
@@ -41,5 +53,6 @@
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
     @RenderSection("scripts", required: false)
+    <script src="~/Scripts/abrir.js"></script>
 </body>
 </html>
