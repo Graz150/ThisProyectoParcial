@@ -118,6 +118,15 @@ namespace ProyectoParcial3.Controllers
             return View(new VerifyCodeViewModel { Provider = provider, ReturnUrl = returnUrl, RememberMe = rememberMe });
         }
 
+        public List<SelectListItem> consultarCiudad()
+        {
+            List<SelectListItem> listaCiudad = new List<SelectListItem>();
+            foreach (var ciudad in db.Ciudad)
+            {
+                listaCiudad.Add(new SelectListItem() { Value = ciudad.ID.ToString(), Text = ciudad.Nombre });
+            }
+            return listaCiudad;
+        }
         //
         // POST: /Account/VerifyCode
         [HttpPost]
@@ -309,7 +318,7 @@ namespace ProyectoParcial3.Controllers
         {
             return View();
         }
-
+        
         //
         // POST: /Account/ExternalLogin
         [HttpPost]
@@ -348,22 +357,14 @@ namespace ProyectoParcial3.Controllers
                 return View();
             }
 
-            // Generar el token y enviarlo
+            // Genera token 2FA y lo envia. 
             if (!await SignInManager.SendTwoFactorCodeAsync(model.SelectedProvider))
             {
                 return View("Error");
             }
             return RedirectToAction("VerifyCode", new { Provider = model.SelectedProvider, ReturnUrl = model.ReturnUrl, RememberMe = model.RememberMe });
         }
-        public List<SelectListItem> consultarCiudad()
-        {
-            List<SelectListItem> listaCiudad = new List<SelectListItem>();
-            foreach (var ciudad in db.Ciudad)
-            {
-                listaCiudad.Add(new SelectListItem() { Value = ciudad.ID.ToString(), Text = ciudad.Nombre });
-            }
-            return listaCiudad;
-        }
+       
         //
         // GET: /Account/ExternalLoginCallback
         [AllowAnonymous]
@@ -380,33 +381,41 @@ namespace ProyectoParcial3.Controllers
             switch (result)
             {
                 case SignInStatus.Success:
-                    //Aquí debería redirigir de acuerdo al Role del usuario
+                    //Redireccion a "vistas" personalizadas 
+
+
+                    //Trae al usuario y rol 
                     /*var usuario = UserManager.Users.Where(x => x.Email == loginInfo.Email).FirstOrDefault();
                     var roles = UserManager.GetRoles(usuario.Id).ToArray();
-                    //Inicia la sesión de usuario, una vez verificado
+                    //Inicia sesion del usuario despues de validar su autenticidad
                     //await SignInManager.SignInAsync(usuario, isPersistent: false, rememberBrowser: false);
+                   
                     switch (roles[0])
                     {
+                    //En este case se supone que deberia regresarnos a la pantalla index, donde deberia estar la presentacion
+                    de prueba/ Creacion y demas cositas pero la irresponsabilidad no detiene el tiempo :( 
+
                         case "Alumno":
-                            //Redirije a la pantalla de Alumnos
+                            return RedirectToAction ("Index" , "Estudiante")
                             break;
+
+                    //Lo mismo de arriba, suena mejor en mi mente.
+
                         case "Docente":
-                            //Redirije a la pantalla de Docentes
+                            //return RedirectToAction ("Index" , "Docente")
                             break;
+
+                             
                     }*/
-                    var user = db.Users.Where(x => x.Email == loginInfo.Email).First();
-                    if (UserManager.IsInRole(user.Id, "Docente"))
-                    {
-                        return RedirectToAction("Index", "Docente");
-                    }
-                    return RedirectToAction("Index", "Estudiante");
+                  
+
                 case SignInStatus.LockedOut:
                     return View("Lockout");
                 case SignInStatus.RequiresVerification:
                     return RedirectToAction("SendCode", new { ReturnUrl = returnUrl, RememberMe = false });
                 case SignInStatus.Failure:
                 default:
-                    // Si el usuario no tiene ninguna cuenta, solicitar que cree una
+                    // Reciclado, en caso de que el usuario no tenga una cuenta, se le solicita que cree una.
                     ViewBag.ReturnUrl = returnUrl;
                     ViewBag.LoginProvider = loginInfo.Login.LoginProvider;
 
@@ -423,18 +432,28 @@ namespace ProyectoParcial3.Controllers
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> ExternalLoginConfirmation(ExternalLoginConfirmationViewModel model, string returnUrl)
         {
+
+            /*Aqui evitamos que se registre con un dominio diferente al de la udi, en la pantalla de registro
+             *mostramos el email que tiene el estudiante para asegurarnos de que lo este recibiendo, esto por cuestiones de 
+             *desarrollo, recomiendo no cambiar absolutamente nada de los campos autogenerados (se excluyen los list), debido
+             *a que les va a triggerear el if de la parte de abajo
+            */
             if (!model.Email.Contains("@udi.edu.co"))
             {
                 return View("InvalidAccount");
             }
+            
             if (User.Identity.IsAuthenticated)
             {
+                /*Debido a que solo tenemos el rol de administrador funcionando parcialmente , esto no sirve de nada mas que para pruebas
+                de asignacion de rol... supongo
+                 */
                 var user = db.Users.Where(x => x.Email == model.Email).First();
                 if (UserManager.IsInRole(user.Id, "Docente"))
                 {
-                    return RedirectToAction("Index", "Docente");
+                    return RedirectToAction("Index", "Home");
                 }
-                return RedirectToAction("Index", "Estudiante");
+                return RedirectToAction("Index", "Home");
             }
             if (ModelState.IsValid)
             {
@@ -445,6 +464,7 @@ namespace ProyectoParcial3.Controllers
                     return View("ExternalLoginFailure");
                 }
 
+                //Aqui creamos el usuario como tal
                 var user = new ApplicationUser
                 {
                     UserName = model.Email,
@@ -472,6 +492,10 @@ namespace ProyectoParcial3.Controllers
             ViewBag.Ciudad = this.consultarCiudad();
             return View(model);
         }
+
+          //Menudo spaguetti nos hicimos
+
+
 
         //
         // POST: /Account/LogOff

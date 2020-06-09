@@ -10,6 +10,16 @@ using System.Web.Mvc;
 
 namespace ProyectoParcial3.Controllers
 {
+    /*Funciona... casi, cuando lo activamos, en efecto no nos deja entrar al administrador, el problema ocurre cuando se esta con una sesion ya iniciada
+     * nos redirecciona a la pantalla de login y si nos logeamos, nos hace un lockout y nuestra cuenta queda asi. Para arreglar.
+     * 
+     * 
+     * 
+    */
+
+    //[Authorize(Roles = "Administrador")]
+
+
     public class AdministradorController : Controller
     {
         private ApplicationSignInManager _signInManager;
@@ -18,8 +28,10 @@ namespace ProyectoParcial3.Controllers
 
         private readonly ApplicationDbContext db = new ApplicationDbContext();
         private readonly string adminRole = "1";
-        private readonly string alumnoRole = "3";
+        //No se usan aun
         private readonly string docenteRole = "2";
+        private readonly string alumnoRole = "3";
+ 
         private IEnumerable<ApplicationUser> getUsersByRoleId(string role)
         {
             var usuarios = db.Users.Where(user => user.Roles.All(urm => urm.RoleId == role));
@@ -80,27 +92,20 @@ namespace ProyectoParcial3.Controllers
         {
             //Ordenamiento por columnas
             ViewBag.CurrentSort = sortOrder;
-            //Se le asigna al viewbag el valor dependiendo del valor que traiga para alternal el ordenamiento entre ascendente y descendente
+            //El valor del viewbag altera el ordenamiento sea ASC o DESC
             ViewBag.NombreSortParm = sortOrder == "Nombre" ? "Nombres_desc" : "Nombre";
             ViewBag.ApellidosSortParm = sortOrder == "Apellido" ? "Apellidos_desc" : "Apellido";
             ViewBag.EmailSortParm = sortOrder == "Email" ? "Email_desc" : "Email";
             ViewBag.UserNameSortParm = sortOrder == "Username" ? "Username_desc" : "Username";
-            //condicional para saber si se tiene algun valor de textbox de busqueda
+       
 
-            if (searchString != null)
-            {
-                page = 1;
-            }
-            else
-            {
-                searchString = currentFilter;
-            }
-            ViewBag.CurrentFilter = searchString;
-            //Trae todos los usuarios que sean admin ordenados y paginados
-            //Se le pasa la base de datos el tipo de rol de los usuarios que se quiere traer, lo que contiene el cuadro de busqueda, la pagina y el ordenamiento
+            //Aqui le pedimos que solo traiga aquellos que sean admins de la base de datos
             UserViewModel adminUsers = new UserViewModel(db, adminRole, sortOrder, searchString, page);
 
-            //-----------------------------------------var roles = UserManager.IsInRole();
+           
+
+            /*Diccionario usado para traernos los roles de cada uno de los usuarios (en este caso solo el de administrador porque solo estamos trayendo administradores
+            y mostrarlos acordes al ID de usuario*/
 
             Dictionary<string, string> RolesByUsuario = new Dictionary<string, string>();
             foreach (var i in db.Users.ToList())
@@ -122,7 +127,7 @@ namespace ProyectoParcial3.Controllers
 
 
 
-
+        /* Esta seria el index de la lista de alumnos
         public ActionResult IndexAlumnos(string sortOrder, string currentFilter, string searchString, int? page)
         {
 
@@ -141,11 +146,17 @@ namespace ProyectoParcial3.Controllers
                 searchString = currentFilter;
             }
             ViewBag.CurrentFilter = searchString;
+         
+        //Aqui decimos que de la bd nos traiga solo los alumnos 
+
             UserViewModel alumnoUsers = new UserViewModel(db, alumnoRole, sortOrder, searchString, page);
 
             return View(alumnoUsers);
         }
 
+        */
+
+        //Intento de llamarlo por id de usuario
         //[HttpPost]
         //[ValidateAntiForgeryToken]
 
@@ -158,6 +169,7 @@ namespace ProyectoParcial3.Controllers
         //return RedirectToAction("Index");
         //}
         
+        //Edit que no funciona, deberia, pero no
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Edit (UserViewModel applicationUser)
@@ -174,7 +186,13 @@ namespace ProyectoParcial3.Controllers
 
         }
 
+        /*Metodo para eliminar el administrador, funciona, pero no hace logout cuando nos eliminamos a nosotros mismos,
+         de hecho, eso no deberia ni de poder ocurrir.
 
+        ToDo^
+         
+         
+         */
         public ActionResult Delete(UserViewModel obj)
         {   
             ApplicationUser applicationUser = db.Users.Where(x => x.Email == obj.Correo).First();

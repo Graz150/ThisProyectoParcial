@@ -28,3 +28,5 @@ namespace ProyectoParcial3.Controllers
         }
     }
 }
+
+//Este es el controlador mas limpio de todo el proyecto.
