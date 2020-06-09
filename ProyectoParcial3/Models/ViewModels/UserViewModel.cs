@@ -10,18 +10,14 @@ namespace ProyectoParcial3.Models.ViewModels
     public class UserViewModel
     {
         public string UserId{ get; set; }
-
         public string Correo { get; set; }
-         
-
         public IEnumerable<ApplicationUser> ListaUsuarios { get; set; }
         public IPagedList<ApplicationUser> ListaUsuariosP { get; set; }
         public ApplicationUser Usuario { get; set; }
         public string Message { get; set; }
-        /// <summary>
-        /// Trae todos los usuarios que correspondan a un role
-        /// </summary>
-        /// 
+        
+        // Trae todos los usuarios que correspondan a un rol
+       
 
         public Dictionary<string, string> RolesByUsuario { get; set; } = new Dictionary<string, string>();
 
@@ -29,45 +25,39 @@ namespace ProyectoParcial3.Models.ViewModels
         {
             this.ListaUsuarios = getUsersByRoleId(role, db);
         }
-        /// <summary>
-        /// Para crear y listar todos los usuarios
-        /// </summary>
+        // 
+        // crea y lista  los usuarios
+    
         public UserViewModel(ApplicationDbContext db)
         {
             //Para crear y listar todos los usuarios
             Message = null;
             ListaUsuarios = db.Users.ToList();
         }
-        /// <summary>
-        /// Constructor vacío por siakas XD
-        /// </summary>
-
+     
         public UserViewModel()
         {
 
         }
 
 
-        /// <summary>
-        /// Trae todos los usuarios que correspondan a un Role Especificado
-        /// </summary>
+ 
+        // trae a los usuarios cuyo rol sea especificado
+    
         private IEnumerable<ApplicationUser> getUsersByRoleId(string role, ApplicationDbContext db)
         {
             var usuarios = db.Users.Where(user => user.Roles.All(urm => urm.RoleId == role));
             return usuarios;
         }
-        /// <summary>
-        /// Trae todos los usuarios que correspondan a un Role con un ordenamiento determinado
-        /// </summary>
+     
+        // Ordena a los usuarios que tengan cierto rol  
         public UserViewModel(ApplicationDbContext db, string role, string sortOrder, string searchString, int? page)
         {
             this.ListaUsuariosP = getUsersByRoleId(role, db, sortOrder, searchString, page);
         }
 
-        /// <summary>
-        ///Trae los usuarios de un rol especifico, ordenado por una columna o por id los cuales pertenecen a una pagina especifica
-        /// del paginado o se filtran por lo que se haya buscando en el cuadro de busqueda
-        /// </summary>
+     
+        //Lista de usuarios paginados
         private IPagedList<ApplicationUser> getUsersByRoleId(string role, ApplicationDbContext db, string sortOrder, string searchString, int? page)
         {
             var usuarios = db.Users.Where(user => user.Roles.All(urm => urm.RoleId == role));

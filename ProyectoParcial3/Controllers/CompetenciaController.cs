@@ -10,6 +10,7 @@ using ProyectoParcial3.Models;
 
 namespace ProyectoParcial3.Controllers
 {
+    
     public class CompetenciaController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();

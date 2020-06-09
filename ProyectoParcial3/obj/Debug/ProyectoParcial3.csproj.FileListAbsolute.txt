@@ -889,7 +889,6 @@ D:\Desktop\Proyectoparepositorio\ProyectoParcial3\ProyectoParcial3\bin\es\Micros
 D:\Desktop\Proyectoparepositorio\ProyectoParcial3\ProyectoParcial3\bin\es\Microsoft.Owin.Security.Google.resources.dll
 D:\Desktop\Proyectoparepositorio\ProyectoParcial3\ProyectoParcial3\bin\es\Microsoft.Owin.Security.Twitter.resources.dll
 D:\Desktop\Proyectoparepositorio\ProyectoParcial3\ProyectoParcial3\bin\es\Microsoft.Owin.Security.MicrosoftAccount.resources.dll
-D:\Desktop\Proyectoparepositorio\ProyectoParcial3\ProyectoParcial3\obj\Debug\ProyectoParcial3.csprojAssemblyReference.cache
 D:\Desktop\Proyectoparepositorio\ProyectoParcial3\ProyectoParcial3\obj\Debug\ProyectoParcial3.csproj.CoreCompileInputs.cache
 D:\Desktop\Proyectoparepositorio\ProyectoParcial3\ProyectoParcial3\obj\Debug\ProyectoParcial3.csproj.CopyComplete
 D:\Desktop\Proyectoparepositorio\ProyectoParcial3\ProyectoParcial3\obj\Debug\ProyectoParcial3.dll

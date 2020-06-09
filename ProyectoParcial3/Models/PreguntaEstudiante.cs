@@ -12,7 +12,7 @@ namespace ProyectoParcial3.Models
         public int? OpcionElegida { get; set; }
         public Opcion Opcion { get; set; }
         
-        [Required]
+
         [ForeignKey("Pregunta")]
         public int? PreguntaID { get; set; }
         public Pregunta Pregunta { get; set; }

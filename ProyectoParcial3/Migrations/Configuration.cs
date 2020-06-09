@@ -29,14 +29,31 @@ namespace ProyectoParcial3.Migrations
             context.Ciudad.AddOrUpdate(
 
               new Models.Ciudad { ID = 1, Nombre = "Bogota" },
-              new Models.Ciudad { ID = 2, Nombre = "Bucaramanga" }
-
-
-
-
-
-
+              new Models.Ciudad { ID = 2, Nombre = "Bucaramanga" },
+              new Models.Ciudad { ID= 3,  Nombre= "Cucuta"},
+              new Models.Ciudad { ID= 4, Nombre= "Medellin"},
+              new Models.Ciudad { ID= 5, Nombre= "Barrancabermeja"},
+              new Models.Ciudad { ID= 6, Nombre= "Villavicencio"}
                 );
+
+
+            //Llenado de pregunta afirmacion
+
+
+
+            context.Afirmacions.AddOrUpdate(
+                
+                
+                new Models.Afirmacion { ID= 1 , Nombre= "Cuanto es 2+2"}
+                             
+                                                               
+                
+                );
+
+
+
+
+
         }
     }
 }

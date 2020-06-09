@@ -21,7 +21,7 @@ namespace ProyectoParcial3.Models
 
         [Required]
         [Display(Name = "TipoOpcion")]
-        [DefaultValue(TipoOpcion.Falsa)]
+        
         public TipoOpcion Tipo { get; set; }
     }
 }
