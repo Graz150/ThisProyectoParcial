@@ -87,8 +87,8 @@ namespace ProyectoParcial3
             };
 
             // Configurar valores predeterminados para bloqueo de usuario
-            manager.UserLockoutEnabledByDefault = true;
-            manager.DefaultAccountLockoutTimeSpan = TimeSpan.FromMinutes(5);
+            manager.UserLockoutEnabledByDefault = false;
+            manager.DefaultAccountLockoutTimeSpan = TimeSpan.FromMinutes(0);
             manager.MaxFailedAccessAttemptsBeforeLockout = 5;
 
             // Registre proveedores de autenticación en dos fases. Esta aplicación usa los pasos Teléfono y Correo electrónico para recibir un código para comprobar el usuario
