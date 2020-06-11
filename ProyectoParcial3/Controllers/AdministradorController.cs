@@ -16,8 +16,8 @@ namespace ProyectoParcial3.Controllers
      * 
      * 
     */
-
-    //[Authorize(Roles = "Administrador")]
+    
+    [Authorize(Roles = "Administrador")]
 
 
     public class AdministradorController : Controller
@@ -92,16 +92,16 @@ namespace ProyectoParcial3.Controllers
         {
             //Ordenamiento por columnas
             ViewBag.CurrentSort = sortOrder;
-            //El valor del viewbag altera el ordenamiento sea ASC o DESC
+            //El valor del viewbag altera el ordenamiento sea ASC o DESC en este caso , es descendente
             ViewBag.NombreSortParm = sortOrder == "Nombre" ? "Nombres_desc" : "Nombre";
             ViewBag.ApellidosSortParm = sortOrder == "Apellido" ? "Apellidos_desc" : "Apellido";
             ViewBag.EmailSortParm = sortOrder == "Email" ? "Email_desc" : "Email";
             ViewBag.UserNameSortParm = sortOrder == "Username" ? "Username_desc" : "Username";
-       
+                                                                                                      
 
             //Aqui le pedimos que solo traiga aquellos que sean admins de la base de datos
             UserViewModel adminUsers = new UserViewModel(db, adminRole, sortOrder, searchString, page);
-
+            
            
 
             /*Diccionario usado para traernos los roles de cada uno de los usuarios (en este caso solo el de administrador porque solo estamos trayendo administradores
@@ -125,7 +125,7 @@ namespace ProyectoParcial3.Controllers
         }
 
 
-
+        
 
         /* Esta seria el index de la lista de los alumnos
         public ActionResult IndexAlumnos(string sortOrder, string currentFilter, string searchString, int? page)

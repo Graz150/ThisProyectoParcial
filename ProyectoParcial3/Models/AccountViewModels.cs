@@ -80,7 +80,7 @@ namespace ProyectoParcial3.Models
 
     public class RegisterViewModel
     {
-        [Required]
+        [Required]    
         [Display(Name = "Nombre")]
         public string Nombres { get; set; }
 
