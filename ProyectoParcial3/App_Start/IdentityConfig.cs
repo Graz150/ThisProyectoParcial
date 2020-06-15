@@ -19,7 +19,7 @@ namespace ProyectoParcial3
         public static readonly string DefaultMailPass = "Pruebavisual1";
         public Task SendAsync(IdentityMessage message)
         {
-            try
+            try                  
             {
                 SmtpClient smtp = new SmtpClient
                 {

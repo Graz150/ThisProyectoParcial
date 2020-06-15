@@ -10,12 +10,12 @@ namespace ProyectoParcial3.Migrations
         public Configuration()
         { 
             AutomaticMigrationsEnabled = true;
-            AutomaticMigrationDataLossAllowed = true;
+            //AutomaticMigrationDataLossAllowed = true; 
         }
-
+                 
         //Metodo seed , llenado predeterminado de la base de datos
         protected override void Seed(ProyectoParcial3.Models.ApplicationDbContext context)
-        {
+        { 
 
             //Llenado de tabla AspNetRoles
             context.Roles.AddOrUpdate(x => x.Id,
@@ -23,6 +23,16 @@ namespace ProyectoParcial3.Migrations
                  new Microsoft.AspNet.Identity.EntityFramework.IdentityRole { Id = "2", Name = "Docente" },
                  new Microsoft.AspNet.Identity.EntityFramework.IdentityRole { Id = "3", Name = "Alumno" }
                  );
+
+           /*Llenado de tabla AspNetUsers
+            * context.Users.AddOrUpdate(x => x.Id,
+
+                new Microsoft.AspNet.Identity.EntityFramework.IdentityUser { Id= "3" , etc etc }
+
+                
+
+
+                ); */
 
 
             //Llenado de la tabla ciudad
@@ -46,7 +56,7 @@ namespace ProyectoParcial3.Migrations
                 
                 new Models.Afirmacion { ID= 1 , Nombre= "Cuanto es 2+2"}
                              
-                                                               
+                                                                  
                 
                 );
 

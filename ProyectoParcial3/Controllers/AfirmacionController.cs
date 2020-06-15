@@ -9,7 +9,7 @@ using System.Web.Mvc;
 using ProyectoParcial3.Models;
 
 namespace ProyectoParcial3.Controllers
-{
+{ 
     public class AfirmacionController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();

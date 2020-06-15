@@ -8,13 +8,13 @@ using System.Web;
 using System.Web.Mvc;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
-using Microsoft.Owin.Security;
+using Microsoft.Owin.Security; 
 using ProyectoParcial3.Models;
 
 namespace ProyectoParcial3.Controllers
 {
     [Authorize]
-    public class AccountController : Controller
+        public class AccountController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();
         private ApplicationSignInManager _signInManager;
@@ -198,7 +198,7 @@ namespace ProyectoParcial3.Controllers
                     // await UserManager.SendEmailAsync(user.Id, "Confirmar cuenta", "Para confirmar la cuenta, haga clic <a href=\"" + callbackUrl + "\">aquí</a>");
 
 
-                    //No olvidar que debería redirigir al index del administrador
+                    //Si sabe que es administrador pues regrese a la vista administrador
                     return RedirectToAction("Index", "Administrador");
                 }
                 
@@ -448,13 +448,11 @@ namespace ProyectoParcial3.Controllers
 
             if (User.Identity.IsAuthenticated)
             {
-                /*Debido a que solo tenemos el rol de administrador funcionando parcialmente , esto no sirve de nada mas que para pruebas
-                de asignacion de rol... supongo
-                 */
+                
                 var user = db.Users.Where(x => x.Email == model.Email).First();
 
                 return RedirectToAction("Index", "Home");
-
+                
 
             }
             if (ModelState.IsValid)
@@ -466,7 +464,7 @@ namespace ProyectoParcial3.Controllers
                     return View("ExternalLoginFailure");
                 }
 
-                //Aqui creamos el usuario como tal
+                //Aqui creamos el usuario 
                 var user = new ApplicationUser
                 {
                     UserName = model.Email,
@@ -479,7 +477,9 @@ namespace ProyectoParcial3.Controllers
                 var result = await UserManager.CreateAsync(user);
                 if (result.Succeeded)
                 { 
+                    
                     result = await UserManager.AddLoginAsync(user.Id, info.Login);
+
                     if (result.Succeeded)
                     {
                         result = await UserManager.AddToRoleAsync(user.Id, model.Rol);

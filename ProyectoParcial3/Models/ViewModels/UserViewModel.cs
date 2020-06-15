@@ -37,7 +37,7 @@ namespace ProyectoParcial3.Models.ViewModels
      
         public UserViewModel()
         {
-
+            
         }
 
 
@@ -53,7 +53,7 @@ namespace ProyectoParcial3.Models.ViewModels
         // Ordena a los usuarios que tengan cierto rol  
         public UserViewModel(ApplicationDbContext db, string role, string sortOrder, string searchString, int? page)
         {
-            this.ListaUsuariosP = getUsersByRoleId(role, db, sortOrder, searchString, page);
+            this.ListaUsuariosP = getUsersByRoleId(role, db, sortOrder, searchString, page); 
         }
 
      

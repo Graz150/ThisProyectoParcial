@@ -10,12 +10,6 @@ using System.Web.Mvc;
 
 namespace ProyectoParcial3.Controllers
 {
-    /*Funciona... casi, cuando lo activamos, en efecto no nos deja entrar al administrador, el problema ocurre cuando se esta con una sesion ya iniciada
-     * nos redirecciona a la pantalla de login y si nos logeamos, nos hace un lockout y nuestra cuenta queda asi. Para arreglar.
-     * 
-     * 
-     * 
-    */
     
     [Authorize(Roles = "Administrador")]
 
@@ -76,6 +70,9 @@ namespace ProyectoParcial3.Controllers
             }
         }
 
+        /*Esta parte de consulta de rol , iba a ser usada para la creacion de un nuevo administrador, porque como podemos observar
+        no esta el if que me excluye el rol administrador de la consulta
+         */
         public List<SelectListItem> ConsultarRoles()
         {
             List<SelectListItem> listaRoles = new List<SelectListItem>();
@@ -86,7 +83,7 @@ namespace ProyectoParcial3.Controllers
             return listaRoles;
         }
 
-
+        
         // GET: Administrador
         public ActionResult Index(string sortOrder, string currentFilter, string searchString, int? page)
         {
@@ -100,12 +97,12 @@ namespace ProyectoParcial3.Controllers
                                                                                                       
 
             //Aqui le pedimos que solo traiga aquellos que sean admins de la base de datos
-            UserViewModel adminUsers = new UserViewModel(db, adminRole, sortOrder, searchString, page);
+            UserViewModel adminUsers = new UserViewModel(db, adminRole , sortOrder, searchString, page);
             
            
 
             /*Diccionario usado para traernos los roles de cada uno de los usuarios (en este caso solo el de administrador porque solo estamos trayendo administradores
-            y mostrarlos acordes al ID de usuario*/
+            y mostrarlos acordes al ID de usuario*/ 
 
             Dictionary<string, string> RolesByUsuario = new Dictionary<string, string>();
             foreach (var i in db.Users.ToList())
@@ -125,7 +122,7 @@ namespace ProyectoParcial3.Controllers
         }
 
 
-        
+
 
         /* Esta seria el index de la lista de los alumnos
         public ActionResult IndexAlumnos(string sortOrder, string currentFilter, string searchString, int? page)
@@ -154,8 +151,13 @@ namespace ProyectoParcial3.Controllers
             return View(alumnoUsers);
         }
 
-        */
+      
+  
+        
+       
+       
 
+           
         //Intento de llamarlo por id de usuario
         //[HttpPost]
         //[ValidateAntiForgeryToken]
@@ -168,11 +170,19 @@ namespace ProyectoParcial3.Controllers
         //db.SaveChanges();
         //return RedirectToAction("Index");
         //}
-        
+         
+        /*Metodo para eliminar el administrador, funciona, pero no hace logout cuando nos eliminamos a nosotros mismos,
+         de hecho, eso no deberia ni de poder ocurrir.
+
+        ToDo^
+         
+         
+         */
+
         //Edit que no funciona, deberia, pero no
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit (UserViewModel applicationUser)
+        public ActionResult Edit(UserViewModel applicationUser)
         {
             if (ModelState.IsValid)
             {
@@ -183,16 +193,8 @@ namespace ProyectoParcial3.Controllers
             }
             return View(applicationUser);
 
-
         }
 
-        /*Metodo para eliminar el administrador, funciona, pero no hace logout cuando nos eliminamos a nosotros mismos,
-         de hecho, eso no deberia ni de poder ocurrir.
-
-        ToDo^
-         
-         
-         */
         public ActionResult Delete(UserViewModel obj)
         {   
             ApplicationUser applicationUser = db.Users.Where(x => x.Email == obj.Correo).First();
