@@ -6,6 +6,7 @@ using ProyectoParcial3.Models;
 
 namespace ProyectoParcial3.Controllers
 {
+    [Authorize(Roles = CustomRoles.AdministratorOrTeacher)]
     public class ProgramaController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();

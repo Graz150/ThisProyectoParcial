@@ -4,6 +4,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace ProyectoParcial3.Models
 {
+
     [Table("Opcion")]
     public class Opcion
     {

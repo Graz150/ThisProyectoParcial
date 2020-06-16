@@ -5,7 +5,8 @@ using System.Web.Mvc;
 using ProyectoParcial3.Models;
 
 namespace ProyectoParcial3.Controllers
-{ 
+{
+    [Authorize(Roles = CustomRoles.AdministratorOrTeacher)]
     public class AfirmacionController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();
