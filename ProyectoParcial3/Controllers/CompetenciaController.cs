@@ -16,6 +16,10 @@ namespace ProyectoParcial3.Controllers
         {
             return View(db.Competencias.ToList());
         }
+        public ActionResult IndexDocente()
+        {
+            return View(db.Competencias.ToList());
+        }
 
         // GET: Competencia/Details/5
         public ActionResult Details(int? id)
