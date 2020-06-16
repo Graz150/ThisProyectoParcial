@@ -312,9 +312,11 @@
     <Content Include="Views\PreguntaExamen\IndexDocente.cshtml" />
     <Content Include="Views\Programa\IndexDocente.cshtml" />
     <Content Include="Views\Docente\Index.cshtml" />
+    <Content Include="Views\Account\InvalidAccount.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\Estudiante\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
