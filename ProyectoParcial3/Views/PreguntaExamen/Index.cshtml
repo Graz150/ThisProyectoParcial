@@ -1,10 +1,12 @@
 ﻿@model IEnumerable<ProyectoParcial3.Models.PreguntaExamen>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "PreguntaExamen";
 }
 
-<h2>Index</h2>
+<a class="btn btn-index" href="@Url.Action("Index","Administrador")"><span class="glyphicon glyphicon-home"><font face="Century Gothic"> Inicio  </font></span></a>
+
+<h2>Relación exámen pregunta</h2>
 
 <p>
     @Html.ActionLink("Create New", "Create")

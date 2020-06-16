@@ -1,15 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data;
-using System.Data.Entity;
+﻿using System.Data.Entity;
 using System.Linq;
 using System.Net;
-using System.Web;
 using System.Web.Mvc;
 using ProyectoParcial3.Models;
 
 namespace ProyectoParcial3.Controllers
-{  
+{
     public class ExamenController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();
