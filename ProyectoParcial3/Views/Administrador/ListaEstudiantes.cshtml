@@ -4,9 +4,11 @@
     ViewBag.Title = "Index";
 }
 
+<a class="btn btn-index" href="@Url.Action("Index","Administrador")"><span class="glyphicon glyphicon-home"><font face="Century Gothic"> Inicio  </font></span></a>
+
 <h2>Lista de estudiantes</h2>
 
-<table class="table">
+<table style="font-family:'Century Gothic'" class="table">
     <tr>
         <th>
             @Html.DisplayNameFor(model => model.Usuario.Nombres)

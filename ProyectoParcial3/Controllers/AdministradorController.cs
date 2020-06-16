@@ -124,8 +124,8 @@ namespace ProyectoParcial3.Controllers
 
 
 
-        /* Esta seria el index de la lista de los alumnos
-        public ActionResult IndexAlumnos(string sortOrder, string currentFilter, string searchString, int? page)
+         //Esta seria el index de la lista de los alumnos
+        public ActionResult ListaEstudiantes(string sortOrder, string currentFilter, string searchString, int? page)
         {
 
             ViewBag.CurrentSort = sortOrder;
@@ -148,15 +148,63 @@ namespace ProyectoParcial3.Controllers
 
             UserViewModel alumnoUsers = new UserViewModel(db, alumnoRole, sortOrder, searchString, page);
 
+            Dictionary<string, string> RolesByUsuario = new Dictionary<string, string>();
+            foreach (var i in db.Users.ToList())
+            {
+                foreach (var j in db.Roles.ToList())
+                {
+                    if (UserManager.IsInRole(i.Id, j.Name))
+                    {
+                        RolesByUsuario.Add(i.Id, j.Name);
+                    }
+                }
+            }
+            alumnoUsers.RolesByUsuario = RolesByUsuario;
+
             return View(alumnoUsers);
         }
 
-      
-  
-        
-       
-       
 
+        public ActionResult ListaDocentes(string sortOrder, string currentFilter, string searchString, int? page)
+        {
+
+            ViewBag.CurrentSort = sortOrder;
+            ViewBag.NombreSortParm = sortOrder == "Nombres" ? "Nombres_desc" : "Nombres";
+            ViewBag.ApellidosSortParm = sortOrder == "Apellidos" ? "Apellidos_desc" : "Apellidos";
+            ViewBag.EmailSortParm = sortOrder == "Email" ? "Email_desc" : "Email";
+            ViewBag.UserNameSortParm = sortOrder == "Username" ? "Username_desc" : "Username";
+
+            if (searchString != null)
+            {
+                page = 1;
+            }
+            else
+            {
+                searchString = currentFilter;
+            }
+            ViewBag.CurrentFilter = searchString;
+
+            //Aqui decimos que de la bd nos traiga solo los alumnos 
+
+            UserViewModel docenteUsers = new UserViewModel(db, docenteRole, sortOrder, searchString, page);
+
+            Dictionary<string, string> RolesByUsuario = new Dictionary<string, string>();
+            foreach (var i in db.Users.ToList())
+            {
+                foreach (var j in db.Roles.ToList())
+                {
+                    if (UserManager.IsInRole(i.Id, j.Name))
+                    {
+                        RolesByUsuario.Add(i.Id, j.Name);
+                    }
+                }
+            }
+            docenteUsers.RolesByUsuario = RolesByUsuario;
+
+            return View(docenteUsers);
+        }
+
+        /*
            
         //Intento de llamarlo por id de usuario
         //[HttpPost]
@@ -175,7 +223,6 @@ namespace ProyectoParcial3.Controllers
          de hecho, eso no deberia ni de poder ocurrir.
 
         ToDo^
-         
          
          */
 
