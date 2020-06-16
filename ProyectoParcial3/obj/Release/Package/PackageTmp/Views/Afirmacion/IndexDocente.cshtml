@@ -1,24 +1,17 @@
-﻿@model IEnumerable<ProyectoParcial3.Models.Pregunta>
+﻿@model IEnumerable<ProyectoParcial3.Models.Afirmacion>
 
 @{
-    ViewBag.Title = "Pregunta";
+    ViewBag.Title = "Afirmacion";
 }
-
 <a class="btn btn-index" href="@Url.Action("Index","Docente")"><span class="glyphicon glyphicon-home"><font face="Century Gothic"> Inicio  </font></span></a>
 
-<h2>Preguntas</h2>
+<h2>Afirmaciones</h2>
 
 <p>
     @Html.ActionLink("Create New", "Create")
 </p>
 <table class="table">
     <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.Afirmacion.Nombre)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Competencia.Nombre)
-        </th>
         <th>
             @Html.DisplayNameFor(model => model.Nombre)
         </th>
@@ -28,12 +21,6 @@
     @foreach (var item in Model)
     {
         <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Afirmacion.Nombre)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Competencia.Nombre)
-            </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Nombre)
             </td>

@@ -1,12 +1,12 @@
-﻿@model IEnumerable<ProyectoParcial3.Models.Pregunta>
+﻿@model IEnumerable<ProyectoParcial3.Models.Examen>
 
 @{
-    ViewBag.Title = "Pregunta";
+    ViewBag.Title = "Examen";
 }
 
 <a class="btn btn-index" href="@Url.Action("Index","Docente")"><span class="glyphicon glyphicon-home"><font face="Century Gothic"> Inicio  </font></span></a>
 
-<h2>Preguntas</h2>
+<h2>Exámenes</h2>
 
 <p>
     @Html.ActionLink("Create New", "Create")
@@ -14,13 +14,10 @@
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.Afirmacion.Nombre)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Competencia.Nombre)
-        </th>
-        <th>
             @Html.DisplayNameFor(model => model.Nombre)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FechaEntrega)
         </th>
         <th></th>
     </tr>
@@ -29,13 +26,10 @@
     {
         <tr>
             <td>
-                @Html.DisplayFor(modelItem => item.Afirmacion.Nombre)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Competencia.Nombre)
-            </td>
-            <td>
                 @Html.DisplayFor(modelItem => item.Nombre)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FechaEntrega)
             </td>
             <td>
                 @Html.ActionLink("Edit", "Edit", new { id = item.ID }) |

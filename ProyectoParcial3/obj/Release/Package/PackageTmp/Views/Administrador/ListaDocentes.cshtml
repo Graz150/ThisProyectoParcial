@@ -1,12 +1,11 @@
 ﻿@model ProyectoParcial3.Models.ViewModels.UserViewModel
-
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "ListaDocentes";
 }
 
 <a class="btn btn-index" href="@Url.Action("Index","Administrador")"><span class="glyphicon glyphicon-home"><font face="Century Gothic"> Inicio  </font></span></a>
 
-<h2>Lista de estudiantes</h2>
+<h2>Lista de docentes</h2>
 
 <table style="font-family:'Century Gothic'" class="table">
     <tr>
@@ -63,37 +62,3 @@
         </tr>
     }
 </table>
-
-<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLongTitle">Eliminar</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            @using (Html.BeginForm("Delete", "Administrador", FormMethod.Post))
-            {
-                @Html.AntiForgeryToken()
-                @Html.HiddenFor(Model => Model.Usuario.Email)
-                <div class="modal-body">
-                    ¿Está seguro que desea eliminar?
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-                    <button type="submit" class="btn btn-primary" value="Delete">Guardar cambios</button>
-                </div>
-
-            }
-
-        </div>
-    </div>
-</div>
-
-<script type="text/javascript">
-
-    function setusuarioEmail(Email) {
-        $('#Usuario_Email').val(Email);
-    }
-</script>
