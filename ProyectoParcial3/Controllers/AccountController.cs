@@ -8,13 +8,13 @@ using System.Web;
 using System.Web.Mvc;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
-using Microsoft.Owin.Security;
+using Microsoft.Owin.Security; 
 using ProyectoParcial3.Models;
 
 namespace ProyectoParcial3.Controllers
 {
     [Authorize]
-    public class AccountController : Controller
+        public class AccountController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();
         private ApplicationSignInManager _signInManager;
@@ -86,10 +86,10 @@ namespace ProyectoParcial3.Controllers
             {
                 return View(model);
             }
-
+           
             // No cuenta los errores de inicio de sesión para el bloqueo de la cuenta
             // Para permitir que los errores de contraseña desencadenen el bloqueo de la cuenta, cambie a shouldLockout: true
-            var result = await SignInManager.PasswordSignInAsync(model.Email, model.Password, model.RememberMe, shouldLockout: false);
+            var result = await SignInManager.PasswordSignInAsync(model.Email, model.Password, model.RememberMe, shouldLockout: true);
             switch (result)
             {
                 case SignInStatus.Success:
@@ -198,10 +198,10 @@ namespace ProyectoParcial3.Controllers
                     // await UserManager.SendEmailAsync(user.Id, "Confirmar cuenta", "Para confirmar la cuenta, haga clic <a href=\"" + callbackUrl + "\">aquí</a>");
 
 
-                    //No olvidar que debería redirigir al index del administrador
+                    //Si sabe que es administrador pues regrese a la vista administrador
                     return RedirectToAction("Index", "Administrador");
                 }
-                AddErrors(result);
+                
             }
        
             ViewBag.Ciudad = consultarCiudad();
@@ -381,33 +381,36 @@ namespace ProyectoParcial3.Controllers
             switch (result)
             {
                 case SignInStatus.Success:
-                    //Redireccion a "vistas" personalizadas 
+               //Redireccion a "vistas" personalizadas 
 
 
-                    //Trae al usuario y rol 
-                    /*var usuario = UserManager.Users.Where(x => x.Email == loginInfo.Email).FirstOrDefault();
-                    var roles = UserManager.GetRoles(usuario.Id).ToArray();
-                    //Inicia sesion del usuario despues de validar su autenticidad
-                    //await SignInManager.SignInAsync(usuario, isPersistent: false, rememberBrowser: false);
-                   
-                    switch (roles[0])
-                    {
-                    //En este case se supone que deberia regresarnos a la pantalla index, donde deberia estar la presentacion
-                    de prueba/ Creacion y demas cositas pero la irresponsabilidad no detiene el tiempo :( 
+                //Trae al usuario y rol 
+                /*var usuario = UserManager.Users.Where(x => x.Email == loginInfo.Email).FirstOrDefault();
+                var roles = UserManager.GetRoles(usuario.Id).ToArray();
+                //Inicia sesion del usuario despues de validar su autenticidad
+                //await SignInManager.SignInAsync(usuario, isPersistent: false, rememberBrowser: false);
 
-                        case "Alumno":
-                            return RedirectToAction ("Index" , "Estudiante")
-                            break;
+                switch (roles[0])
+                {
+                //En este case se supone que deberia regresarnos a la pantalla index, donde deberia estar la presentacion
+                de prueba/ Creacion y demas cositas pero la irresponsabilidad no detiene el tiempo :( 
 
-                    //Lo mismo de arriba, suena mejor en mi mente.
+                    case "Estudiante":
+                        return RedirectToAction ("Index" , "Estudiante")
+                        break;
 
-                        case "Docente":
-                            //return RedirectToAction ("Index" , "Docente")
-                            break;
+                //Lo mismo de arriba, suena mejor en mi mente.
 
-                             
-                    }*/
-                  
+                    case "Docente":
+                        //return RedirectToAction ("Index" , "Docente")
+                        break;
+
+
+                }*/
+                 var user = db.Users.Where(x => x.Email == loginInfo.Email).First();
+            
+                return RedirectToAction("Index", "Home");
+             
 
                 case SignInStatus.LockedOut:
                     return View("Lockout");
@@ -442,18 +445,15 @@ namespace ProyectoParcial3.Controllers
             {
                 return View("InvalidAccount");
             }
-            
+
             if (User.Identity.IsAuthenticated)
             {
-                /*Debido a que solo tenemos el rol de administrador funcionando parcialmente , esto no sirve de nada mas que para pruebas
-                de asignacion de rol... supongo
-                 */
+                
                 var user = db.Users.Where(x => x.Email == model.Email).First();
-                if (UserManager.IsInRole(user.Id, "Docente"))
-                {
-                    return RedirectToAction("Index", "Home");
-                }
+
                 return RedirectToAction("Index", "Home");
+                
+
             }
             if (ModelState.IsValid)
             {
@@ -464,7 +464,7 @@ namespace ProyectoParcial3.Controllers
                     return View("ExternalLoginFailure");
                 }
 
-                //Aqui creamos el usuario como tal
+                //Aqui creamos el usuario 
                 var user = new ApplicationUser
                 {
                     UserName = model.Email,
@@ -476,8 +476,10 @@ namespace ProyectoParcial3.Controllers
                 };
                 var result = await UserManager.CreateAsync(user);
                 if (result.Succeeded)
-                {
+                { 
+                    
                     result = await UserManager.AddLoginAsync(user.Id, info.Login);
+
                     if (result.Succeeded)
                     {
                         result = await UserManager.AddToRoleAsync(user.Id, model.Rol);
@@ -485,7 +487,7 @@ namespace ProyectoParcial3.Controllers
                         return RedirectToLocal(returnUrl);
                     }
                 }
-                AddErrors(result);
+               
             }
             ViewBag.ReturnUrl = returnUrl;
             ViewBag.Roles = this.consultarRoles();
@@ -493,7 +495,8 @@ namespace ProyectoParcial3.Controllers
             return View(model);
         }
 
-          //Menudo spaguetti nos hicimos
+           
+
 
 
 
@@ -518,7 +521,7 @@ namespace ProyectoParcial3.Controllers
         protected override void Dispose(bool disposing)
         {
             if (disposing)
-            {
+            {   
                 if (_userManager != null)
                 {
                     _userManager.Dispose();
@@ -554,7 +557,7 @@ namespace ProyectoParcial3.Controllers
                 ModelState.AddModelError("", error);
             }
         }
-
+        
         private ActionResult RedirectToLocal(string returnUrl)
         {
             if (Url.IsLocalUrl(returnUrl))

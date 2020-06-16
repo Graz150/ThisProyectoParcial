@@ -10,12 +10,12 @@ namespace ProyectoParcial3.Migrations
         public Configuration()
         { 
             AutomaticMigrationsEnabled = true;
-            AutomaticMigrationDataLossAllowed = true;
+            //AutomaticMigrationDataLossAllowed = true; 
         }
-
+                 
         //Metodo seed , llenado predeterminado de la base de datos
         protected override void Seed(ProyectoParcial3.Models.ApplicationDbContext context)
-        {
+        { 
 
             //Llenado de tabla AspNetRoles
             context.Roles.AddOrUpdate(x => x.Id,
@@ -24,19 +24,46 @@ namespace ProyectoParcial3.Migrations
                  new Microsoft.AspNet.Identity.EntityFramework.IdentityRole { Id = "3", Name = "Alumno" }
                  );
 
+           /*Llenado de tabla AspNetUsers
+            * context.Users.AddOrUpdate(x => x.Id,
+
+                new Microsoft.AspNet.Identity.EntityFramework.IdentityUser { Id= "3" , etc etc }
+
+                
+
+
+                ); */
+
 
             //Llenado de la tabla ciudad
             context.Ciudad.AddOrUpdate(
 
               new Models.Ciudad { ID = 1, Nombre = "Bogota" },
-              new Models.Ciudad { ID = 2, Nombre = "Bucaramanga" }
-
-
-
-
-
-
+              new Models.Ciudad { ID = 2, Nombre = "Bucaramanga" },
+              new Models.Ciudad { ID= 3,  Nombre= "Cucuta"},
+              new Models.Ciudad { ID= 4, Nombre= "Medellin"},
+              new Models.Ciudad { ID= 5, Nombre= "Barrancabermeja"},
+              new Models.Ciudad { ID= 6, Nombre= "Villavicencio"}
                 );
+
+
+            //Llenado de pregunta afirmacion
+
+
+
+            context.Afirmacions.AddOrUpdate(
+                
+                
+                new Models.Afirmacion { ID= 1 , Nombre= "Cuanto es 2+2"}
+                             
+                                                                  
+                
+                );
+
+
+
+
+
         }
     }
 }
