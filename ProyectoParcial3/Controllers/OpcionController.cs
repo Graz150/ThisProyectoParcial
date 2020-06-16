@@ -16,7 +16,11 @@ namespace ProyectoParcial3.Controllers
             var opcions = db.Opcions.Include(o => o.Pregunta);
             return View(opcions.ToList());
         }
-
+        public ActionResult IndexDocente()
+        {
+            var opcions = db.Opcions.Include(o => o.Pregunta);
+            return View(opcions.ToList());
+        }
         // GET: Opcion/Details/5
         public ActionResult Details(int? id)
         {

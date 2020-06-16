@@ -15,6 +15,10 @@ namespace ProyectoParcial3.Controllers
         {
             return View(db.Programas.ToList());
         }
+        public ActionResult IndexDocente()
+        {
+            return View(db.Programas.ToList());
+        }
 
         // GET: Programa/Details/5
         public ActionResult Details(int? id)

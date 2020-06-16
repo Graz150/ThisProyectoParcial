@@ -16,6 +16,11 @@ namespace ProyectoParcial3.Controllers
             var preguntas = db.Preguntas.Include(p => p.Afirmacion).Include(p => p.Competencia);
             return View(preguntas.ToList());
         }
+        public ActionResult IndexDocente()
+        {
+            var preguntas = db.Preguntas.Include(p => p.Afirmacion).Include(p => p.Competencia);
+            return View(preguntas.ToList());
+        }
 
         // GET: Pregunta/Details/5
         public ActionResult Details(int? id)
