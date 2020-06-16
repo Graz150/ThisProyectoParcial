@@ -308,7 +308,7 @@ namespace ProyectoParcial3.Controllers
             {
                 return RedirectToAction("ResetPasswordConfirmation", "Account");
             }
-            AddErrors(result);
+        
             return View();
         }
 
@@ -385,13 +385,25 @@ namespace ProyectoParcial3.Controllers
              
                  var user = db.Users.Where(x => x.Email == loginInfo.Email).First();
 
-                    if (UserManager.IsInRole(user.Id, "Docente"))
+                    if (UserManager.IsInRole(user.Id, "Alumno"))
                     {
-                        return RedirectToAction("Index", "Docente");
+                        return RedirectToAction("Index", "Estudiante");
+                    }
+
+                    if (UserManager.IsInRole(user.Id, "Docente"))
+                        {
+                            return RedirectToAction("Index", "Docente");
+                        }
+
+                    if (UserManager.IsInRole(user.Id, "Administrador"))
+                    {
+                        return RedirectToAction("Index", "Administrador");
                     }
 
                     return RedirectToAction("Index", "Home");
-             
+
+
+
 
                 case SignInStatus.LockedOut:
                     return View("Lockout");
@@ -418,7 +430,7 @@ namespace ProyectoParcial3.Controllers
         {
 
             /*Aqui evitamos que se registre con un dominio diferente al de la udi, en la pantalla de registro
-             *mostramos el email que tiene el estudiante para asegurarnos de que lo este recibiendo, esto por cuestiones de 
+             *mostramos el email que tiene el usuario para asegurarnos de que lo este recibiendo, esto por cuestiones de 
              *desarrollo, recomiendo no cambiar absolutamente nada de los campos autogenerados (se excluyen los list), debido
              *a que les va a triggerear el if de la parte de abajo
             */

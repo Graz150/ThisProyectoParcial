@@ -10,8 +10,9 @@ using System.Web.Mvc;
 
 namespace ProyectoParcial3.Controllers
 {
-    
+
     [Authorize(Roles = "Administrador")]
+
 
 
     public class AdministradorController : Controller
@@ -22,8 +23,7 @@ namespace ProyectoParcial3.Controllers
 
         private readonly ApplicationDbContext db = new ApplicationDbContext();
         private readonly string adminRole = "1";
-        //No se usan aun
-        private readonly string docenteRole = "2";
+          private readonly string docenteRole = "2";
         private readonly string alumnoRole = "3";
  
         private IEnumerable<ApplicationUser> getUsersByRoleId(string role)

@@ -192,6 +192,7 @@
     <Compile Include="Models\ApplicationRoleManager.cs" />
     <Compile Include="Models\Ciudad.cs" />
     <Compile Include="Models\Competencia.cs" />
+    <Compile Include="Utils\CustomRoles.cs" />
     <Compile Include="Utils\EstadoCuenta.cs" />
     <Compile Include="Models\Examen.cs" />
     <Compile Include="Utils\FechaExamen.cs" />
