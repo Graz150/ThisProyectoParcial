@@ -1,0 +1,64 @@
+﻿@model ProyectoParcial3.Models.ViewModels.UserViewModel
+@{
+    ViewBag.Title = "ListaDocentes";
+}
+
+<a class="btn btn-index" href="@Url.Action("Index","Administrador")"><span class="glyphicon glyphicon-home"><font face="Century Gothic"> Inicio  </font></span></a>
+
+<h2>Lista de docentes</h2>
+
+<table style="font-family:'Century Gothic'" class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Usuario.Nombres)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Usuario.Apellidos)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Usuario.Email)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Usuario.UserName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Usuario.Identificacion)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Usuario.Roles)
+        </th>
+    </tr>
+
+    @foreach (var item in Model.ListaUsuariosP)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Nombres)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Apellidos)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Email)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.UserName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Identificacion)
+            </td>
+            <th>
+                @Html.DisplayNameFor(model => model.Usuario.Roles)
+            </th>
+            <td>
+                <a href='@Url.Action("Delete","Administrador")'></a>
+                <button type="button" class="btn btn-default btn-sm" data-toggle="modal" data-target="#Algo">
+                    <span class="glyphicon glyphicon-pencil"></span>
+                </button>
+                <a class="btn btn-default btn-sm" data-toggle="modal" data-target="#exampleModalCenter" onclick="setusuarioid(''+@item.Email)">
+                    <span class="glyphicon glyphicon-trash"></span>
+                </a>
+            </td>
+        </tr>
+    }
+</table>
