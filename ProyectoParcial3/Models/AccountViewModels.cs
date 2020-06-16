@@ -6,7 +6,7 @@ namespace ProyectoParcial3.Models
     public class ExternalLoginConfirmationViewModel
     {
         [Required]
-        [Display(Name = "Correo electrónico")]
+        [Display(Name = "Correo electrónico")] 
         public string Email { get; set; }
         [Required]
         [Display(Name = "Nombre")]
