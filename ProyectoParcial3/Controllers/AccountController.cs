@@ -199,6 +199,7 @@ namespace ProyectoParcial3.Controllers
 
 
                     //Si sabe que es administrador pues regrese a la vista administrador
+
                     return RedirectToAction("Index", "Administrador");
                 }
                 
@@ -381,35 +382,15 @@ namespace ProyectoParcial3.Controllers
             switch (result)
             {
                 case SignInStatus.Success:
-               //Redireccion a "vistas" personalizadas 
-
-
-                //Trae al usuario y rol 
-                /*var usuario = UserManager.Users.Where(x => x.Email == loginInfo.Email).FirstOrDefault();
-                var roles = UserManager.GetRoles(usuario.Id).ToArray();
-                //Inicia sesion del usuario despues de validar su autenticidad
-                //await SignInManager.SignInAsync(usuario, isPersistent: false, rememberBrowser: false);
-
-                switch (roles[0])
-                {
-                //En este case se supone que deberia regresarnos a la pantalla index, donde deberia estar la presentacion
-                de prueba/ Creacion y demas cositas pero la irresponsabilidad no detiene el tiempo :( 
-
-                    case "Estudiante":
-                        return RedirectToAction ("Index" , "Estudiante")
-                        break;
-
-                //Lo mismo de arriba, suena mejor en mi mente.
-
-                    case "Docente":
-                        //return RedirectToAction ("Index" , "Docente")
-                        break;
-
-
-                }*/
+             
                  var user = db.Users.Where(x => x.Email == loginInfo.Email).First();
-            
-                return RedirectToAction("Index", "Home");
+
+                    if (UserManager.IsInRole(user.Id, "Docente"))
+                    {
+                        return RedirectToAction("Index", "Docente");
+                    }
+
+                    return RedirectToAction("Index", "Home");
              
 
                 case SignInStatus.LockedOut:
@@ -534,7 +515,7 @@ namespace ProyectoParcial3.Controllers
                     _signInManager = null;
                 }
             }
-
+            
             base.Dispose(disposing);
         }
 
